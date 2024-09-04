@@ -1,0 +1,15 @@
+<%- include('includes/header'); %>
+    <h2>Dokument</h2>
+    <form method="POST" action="/update" class="new-doc">
+
+        <input type="hidden" name="id" value="<%= doc.id %>" />
+        
+        <label for="title">Titel</label>
+        <input type="text" name="title" value="<%= doc.title %>" />
+
+        <label for="content">Innehåll</label>
+        <textarea name="content"><%= doc.content %></textarea>
+
+        <input type="submit" value="Uppdatera" />
+    </form>
+<%- include('includes/footer'); %>
