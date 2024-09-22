@@ -9,34 +9,42 @@ const DocumentForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchDocument = async () => {
+        const fetchDoc = async () => {
             if (id) {
-                const response = await axios.get(`http://localhost:9000/${id}`);
-                setTitle(response.data.title);
-                setContent(response.data.content);
+                try {
+                    const response = await axios.get(`http://localhost:9000/${id}`);
+                    setTitle(response.data.title);
+                    setContent(response.data.content);
+                } catch (error) {
+                    console.error('Error fetching document:', error);
+                }
             }
         };
 
-        fetchDocument();
+        fetchDoc();
     }, [id]);
 
-    const handleSubmit = async (e) => {
+    const submitDoc = async (e) => {
         e.preventDefault();
 
         const docData = { title, content };
 
-        if (id) {
-            await axios.put(`http://localhost:9000/${id}`, docData);
-        } else {
-            await axios.post('http://localhost:9000/', docData);
+        try {
+            if (id) {
+                await axios.put(`http://localhost:9000/${id}`, docData);
+            } else {
+                await axios.post('http://localhost:9000/', docData);
+            }
+            navigate('/');
+        } catch (error) {
+            console.error(`Error ${id ? 'updating' : 'creating'} document:`, error);
         }
-        navigate('/');
     };
 
     return (
         <div>
         <h2>{id ? 'Edit Document' : 'Create New Document'}</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submitDoc}>
           <div>
             <label>Title:</label>
             <input
@@ -54,7 +62,7 @@ const DocumentForm = () => {
               required
             />
           </div>
-          <button type="submit">{id ? 'Update' : 'Create'}</button>
+          <button type="submit">{id ? 'Save' : 'Create'}</button>
         </form>
       </div>
     );
