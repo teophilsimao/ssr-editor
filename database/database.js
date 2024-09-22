@@ -10,10 +10,7 @@ const database = {
             dsn = `mongodb://localhost:27017/test`;
         }
 
-        const client = await mongo.connect(dsn, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        const client = await mongo.connect(dsn);
         const db = await client.db();
         const collection = await db.collection(collectionName);
 
@@ -24,5 +21,10 @@ const database = {
         };
     }
 }
+
+// , {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+// }
 
 module.exports = database;
