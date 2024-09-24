@@ -5,6 +5,7 @@ import axios from 'axios';
 const DocumentForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [pages, setPages] = useState(['']);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -42,29 +43,29 @@ const DocumentForm = () => {
     };
 
     return (
-        <div>
-        <h2>{id ? 'Edit Document' : 'Create New Document'}</h2>
-        <form onSubmit={submitDoc}>
-          <div>
-            <label>Title:</label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label>Content:</label>
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit">{id ? 'Save' : 'Create'}</button>
-        </form>
-      </div>
+        <div className="form-container">
+          <form onSubmit={submitDoc}>
+          <h2>{id ? 'Edit Document' : 'Create New Document'}</h2>
+            <div>
+              {/* <label>Title:</label> */}
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
+            </div>
+            <div className="textarea-container">
+              {/* <label>Content:</label> */}
+              <textarea
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit">{id ? 'Save' : 'Create'}</button>
+          </form>
+        </div>
     );
 };
 
