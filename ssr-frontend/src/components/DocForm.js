@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
 
 const DocumentForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [pages, setPages] = useState(['']);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -13,9 +11,10 @@ const DocumentForm = () => {
         const fetchDoc = async () => {
             if (id) {
                 try {
-                    const response = await axios.get(`http://localhost:9000/${id}`);
-                    setTitle(response.data.title);
-                    setContent(response.data.content);
+                    const response = await fetch(`http://localhost:9000/${id}`);
+                    const data = await response.json();
+                    setTitle(data.title);
+                    setContent(data.content);
                 } catch (error) {
                     console.error('Error fetching document:', error);
                 }
@@ -31,10 +30,20 @@ const DocumentForm = () => {
         const docData = { title, content };
 
         try {
-            if (id) {
-                await axios.put(`http://localhost:9000/${id}`, docData);
-            } else {
-                await axios.post('http://localhost:9000/', docData);
+            const requestOptions = {
+              method: id ? 'PUT' : 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(docData)
+            };
+
+            const url = id ? `http://localhost:9000/${id}` : 'http://localhost:9000/';
+
+            const response = await fetch(url, requestOptions);
+
+            if (!response.ok) {
+                throw new Error(`Miss`);
             }
             navigate('/');
         } catch (error) {

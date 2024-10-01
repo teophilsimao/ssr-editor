@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 
 const DocumentList = () => {
@@ -8,8 +7,9 @@ const DocumentList = () => {
     useEffect(() => {
         const fetchDocs = async () => {
             try {
-                const response = await axios.get('http://localhost:9000/');
-                setDocs(response.data);
+                const response = await fetch('http://localhost:9000/');
+                const data = await response.json()
+                setDocs(data);
             } catch (error) {
                 console.error('Error fetching documents:', error);
             }
@@ -20,7 +20,14 @@ const DocumentList = () => {
 
     const deleteDoc = async (id) => {
         try {
-            await axios.delete(`http://localhost:9000/${id}`);
+            const response = await fetch(`http://localhost:9000/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (!response.ok) {
+                throw new Error('Miss!');
+            }
+
             setDocs(documents.filter(doc => doc._id !== id));
         } catch (error) {
             console.error('Error deleting document:', error);
