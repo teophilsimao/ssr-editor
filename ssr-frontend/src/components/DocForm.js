@@ -1,11 +1,12 @@
+import { response } from 'express';
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const DocumentForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const { id } = useParams();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     useEffect(() => {
         const fetchDoc = async () => {
@@ -45,7 +46,7 @@ const DocumentForm = () => {
             if (!response.ok) {
                 throw new Error(`Miss`);
             }
-            navigate('/');
+            window.location.href = '/';
         } catch (error) {
             console.error(`Error ${id ? 'updating' : 'creating'} document:`, error);
         }
@@ -56,17 +57,19 @@ const DocumentForm = () => {
           <form onSubmit={submitDoc}>
           <h2>{id ? 'Edit Document' : 'Create New Document'}</h2>
             <div>
-              {/* <label>Title:</label> */}
+              <label htmlFor="title">Title:</label>
               <input
                 type="text"
+                id="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
               />
             </div>
             <div>
-              {/* <label>Content:</label> */}
+              <label htmlFor="content">Content:</label>
               <textarea
+                id="content"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 required

@@ -41,7 +41,6 @@ const DocumentList = () => {
             <ul>
                 {documents.map((doc) => (
                     <li key={doc._id}>
-                        {/* <strong>{doc.title}</strong> */}
                         <Link to={`/document/${doc._id}/edit`}>{doc.title}</Link>
                         <button onClick={() => deleteDoc(doc._id)}>Delete</button>
                     </li>
