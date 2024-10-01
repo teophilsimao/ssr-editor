@@ -16,6 +16,8 @@ app.disable('x-powered-by');
 
 app.set("view engine", "ejs");
 
+app.use(cors());
+
 app.use(express.static(path.join(process.cwd(), "public")));
 
 // don't show the log when it is test
