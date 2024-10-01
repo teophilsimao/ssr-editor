@@ -43,7 +43,7 @@ const DocumentForm = () => {
     };
 
     return (
-        <div className="form-container">
+        <div>
           <form onSubmit={submitDoc}>
           <h2>{id ? 'Edit Document' : 'Create New Document'}</h2>
             <div>
@@ -55,7 +55,7 @@ const DocumentForm = () => {
                 required
               />
             </div>
-            <div className="textarea-container">
+            <div>
               {/* <label>Content:</label> */}
               <textarea
                 value={content}
