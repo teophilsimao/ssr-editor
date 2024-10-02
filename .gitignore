@@ -2,4 +2,6 @@
 .env
 
 # Ignore node modules directory
-node_modules/
+/node_modules
+/ssr-backend/node_modules
+/ssr-frontend/node_modules
