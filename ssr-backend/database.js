@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const database = {
     getDb: async function getDb() {       
-        let dsn = `mongodb+srv://zlyde94:matnTAfdjOjNerpX@documents.xaxzx.mongodb.net/documents?retryWrites=true&w=majority&appName=Documents`
+        let dsn = `mongodb+srv://${process.env.ATLAS_USERNAME}:${ATLAS_PASSWORD}@documents.xaxzx.mongodb.net/documents?retryWrites=true&w=majority&appName=Documents`
 
         if (process.env.NODE_ENV === 'test') {
             dsn = `mongodb://localhost:27017/test`;

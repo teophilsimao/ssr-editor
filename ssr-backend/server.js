@@ -4,7 +4,7 @@ const mongo = require('mongodb');
 const database = require('./database');
 require('dotenv').config();
 
-const port = 9000;
+const port = process.env.PORT;
 
 const app = express();
 app.use(express.json());
