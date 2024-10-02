@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongo = require('mongodb');
-const database = require('./database/database');
+const database = require('./database');
 require('dotenv').config();
 
 const port = process.env.PORT;
