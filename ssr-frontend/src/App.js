@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import DocumentList from "./components/DocsList";
+import DocumentList from "./components/DocList";
 import DocumentForm from "./components/DocForm";
 import './App.css';
 

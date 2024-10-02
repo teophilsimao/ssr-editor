@@ -38,15 +38,17 @@ const DocumentList = () => {
         <div>
             <h2>Documents</h2>
             <Link to="/document/new">Create New Document</Link>
-            <ul>
-                {documents.map((doc) => (
-                    <li key={doc._id}>
-                        {/* <strong>{doc.title}</strong> */}
-                        <Link to={`/document/${doc._id}/edit`}>{doc.title}</Link>
-                        <button onClick={() => deleteDoc(doc._id)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
+            <div className='list-container'>
+                <ul>
+                    {documents.map((doc) => (
+                        <li key={doc._id}>
+                            {/* <strong>{doc.title}</strong> */}
+                            <Link to={`/document/${doc._id}/edit`}>{doc.title}</Link>
+                            <button onClick={() => deleteDoc(doc._id)}>Delete</button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };

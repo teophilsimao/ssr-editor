@@ -5,7 +5,7 @@ const DocumentForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const { id } = useParams();
-    const navigate = useNavigate();
+    /* const navigate = useNavigate(); */
 
     useEffect(() => {
         const fetchDoc = async () => {
@@ -45,36 +45,39 @@ const DocumentForm = () => {
             if (!response.ok) {
                 throw new Error(`Miss`);
             }
-            navigate('/');
+            window.location.href='/';
         } catch (error) {
             console.error(`Error ${id ? 'updating' : 'creating'} document:`, error);
         }
     };
 
     return (
-        <div>
-          <form onSubmit={submitDoc}>
-          <h2>{id ? 'Edit Document' : 'Create New Document'}</h2>
-            <div>
-              {/* <label>Title:</label> */}
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-            </div>
-            <div>
-              {/* <label>Content:</label> */}
-              <textarea
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                required
-              />
-            </div>
-            <button type="submit">{id ? 'Save' : 'Create'}</button>
-          </form>
-        </div>
+      <div id="form-container">
+        <form onSubmit={submitDoc}>
+        <h2>{id ? 'Edit Document' : 'Create New Document'}</h2>
+          <label htmlFor='title'>Title:</label>
+          <div id="title-container">
+            <input
+              id="title"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </div>
+          <label htmlFor="content">Content:</label>
+          <div id="textarea-container">
+            <textarea
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">{id ? 'Save' : 'Create'}</button>
+          <button onClick={() => window.location.href='/'}>Cancel</button>
+        </form>
+      </div>
     );
 };
 
