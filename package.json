@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd ssr-backend && node server.js",
-    "client": "cd ssr-frontend && npm start"
+    "client": "cd ssr-frontend && npm start",
+    "install-all": "concurrently \"npm install\" \"npm run backend\" \"npm run frontend\"",
+    "backend": "cd ssr-backend && npm install",
+    "frontend": "cd ssr-frontend && npm install"
   },
   "author": "",
   "license": "ISC",
