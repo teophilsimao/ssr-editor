@@ -1,4 +1,3 @@
-import { response } from 'express';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 

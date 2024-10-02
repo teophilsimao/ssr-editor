@@ -8,7 +8,6 @@ function App() {
   return (
     <Router>
       <div>
-        <h1>Manager</h1>
         <Routes>
           <Route path="/" element={<DocumentList />} />
           <Route path="/document/new" element={<DocumentForm />} />
