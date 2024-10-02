@@ -1,7 +1,7 @@
 {
-  "name": "ssr-editor",
+  "name": "texteditor",
   "version": "1.0.0",
-  "description": "Starter project for DV1677 JSRamverk",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,6 @@
     "server": "cd ssr-backend && node server.js",
     "client": "cd ssr-frontend && npm start"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
